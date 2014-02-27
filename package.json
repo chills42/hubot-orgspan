@@ -1,26 +1,31 @@
 {
-  "name": "hubot-xmpp",
-  "version": "0.1.10",
-  "author": "Mark Story <mark@mark-story.com> (http://mark-story.com)",
-  "description": "XMPP adapter for Hubot.",
-  "keywords": ["hubot", "xmpp", "adapter"],
+  "name": "hubot-orgspan",
+  "version": "0.0.1",
+  "author": "Craig Hills <chills@gmail.com>",
+  "contributers": [
+    {
+      "name": "Mark Story", "email": "mark@markstory.com"
+    }
+  ],
+  "description": "Orgspan adapter for Hubot.",
+  "keywords": ["hubot", "orgspan", "adapter"],
   "licenses": [{
     "type": "MIT"
   }],
   "repository": {
     "type": "git",
-    "url": "git://github.com/markstory/hubot-xmpp.git"
+    "url": "git://github.com/chills42/hubot-orgspan.git"
   },
   "bugs": {
-    "url": "http://github.com/markstory/hubot-xmpp/issues"
+    "url": "http://github.com/chills42/hubot-orgspan/issues"
   },
   "scripts": {
     "test": "make test"
   },
-  "main": "./src/xmpp",
-  "engine": "node > 0.6.0 < 0.8.0",
+  "main": "./src/orgspan",
+  "engine": "node >=0.8.0 < 0.11.0",
   "dependencies": {
-    "node-xmpp": "0.10.0"
+    "node-xmpp": "0.15.0"
   },
   "devDependencies": {
     "coffee-script": "1.1.3",

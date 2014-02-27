@@ -3,7 +3,7 @@
 Xmpp = require 'node-xmpp'
 util = require 'util'
 
-class XmppBot extends Adapter
+class OrgSpanBot extends Adapter
 
   constructor: ( robot ) ->
     @robot = robot
@@ -17,11 +17,11 @@ class XmppBot extends Adapter
 
   run: ->
     options =
-      username: process.env.HUBOT_XMPP_USERNAME
+      username: process.env.HUBOT_ORGSPAN_USERNAME
       password: '********'
-      host: process.env.HUBOT_XMPP_HOST
-      port: process.env.HUBOT_XMPP_PORT
-      rooms: @parseRooms process.env.HUBOT_XMPP_ROOMS.split(',')
+      host: process.env.HUBOT_ORGSPAN_HOST
+      port: process.env.HUBOT_ORGSPAN_PORT
+      rooms: @parseRooms process.env.HUBOT_ORGSPAN_ROOMS.split(',')
       # ms interval to send whitespace to xmpp server
       keepaliveInterval: 30000
       legacySSL: process.env.HUBOT_XMPP_LEGACYSSL
@@ -29,7 +29,7 @@ class XmppBot extends Adapter
       disallowTLS: process.env.HUBOT_XMPP_DISALLOW_TLS
 
     @robot.logger.info util.inspect(options)
-    options.password = process.env.HUBOT_XMPP_PASSWORD
+    options.password = process.env.HUBOT_ORGSPAN_PASSWORD
 
     @client = new Xmpp.Client
       reconnect: true
@@ -70,7 +70,7 @@ class XmppBot extends Adapter
       console.log util.inspect(error.children?[0]?.name, { showHidden: true, depth: 1 })
 
   online: =>
-    @robot.logger.info 'Hubot XMPP client online'
+    @robot.logger.info 'Hubot Orgspan client online'
 
     # Setup keepalive
     @client.connection.socket.setTimeout 0
@@ -79,7 +79,7 @@ class XmppBot extends Adapter
     presence = new Xmpp.Element 'presence'
     presence.c('nick', xmlns: 'http://jabber.org/protocol/nick').t(@robot.name)
     @client.send presence
-    @robot.logger.info 'Hubot XMPP sent initial presence'
+    @robot.logger.info 'Hubot Orgspan sent initial presence'
 
     @joinRoom room for room in @options.rooms
 
@@ -353,5 +353,5 @@ class XmppBot extends Adapter
     @robot.logger.debug "Received offline event"
 
 exports.use = (robot) ->
-  new XmppBot robot
+  new OrgSpanBot robot
 
