@@ -23,7 +23,7 @@ class OrgSpanBot extends Adapter
       port: process.env.HUBOT_ORGSPAN_PORT
       rooms: @parseRooms process.env.HUBOT_ORGSPAN_ROOMS.split(',')
       # ms interval to send whitespace to xmpp server
-      keepaliveInterval: 1000
+      keepaliveInterval: 30000
       legacySSL: process.env.HUBOT_XMPP_LEGACYSSL
       preferredSaslMechanism: process.env.HUBOT_XMPP_PREFERRED_SASL_MECHANISM
       disallowTLS: process.env.HUBOT_XMPP_DISALLOW_TLS
@@ -126,10 +126,12 @@ class OrgSpanBot extends Adapter
         type: 'unavailable')
 
   read: (stanza) =>
+    @robot.logger.debug "#{stanza.attrs.type}"
     if stanza.attrs.type is 'error'
       @robot.logger.error '[xmpp error]' + stanza
       return
 
+    @robot.logger.debug "#{stanza.attrs.name}"
     switch stanza.name
       when 'message'
         @readMessage stanza
