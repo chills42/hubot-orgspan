@@ -23,7 +23,7 @@ class OrgSpanBot extends Adapter
       port: process.env.HUBOT_ORGSPAN_PORT
       rooms: @parseRooms process.env.HUBOT_ORGSPAN_ROOMS.split(',')
       # ms interval to send whitespace to xmpp server
-      keepaliveInterval: 30000
+      keepaliveInterval: 1000
       legacySSL: process.env.HUBOT_XMPP_LEGACYSSL
       preferredSaslMechanism: process.env.HUBOT_XMPP_PREFERRED_SASL_MECHANISM
       disallowTLS: process.env.HUBOT_XMPP_DISALLOW_TLS
